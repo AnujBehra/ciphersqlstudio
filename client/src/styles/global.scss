@@ -1,0 +1,71 @@
+// ─── Global Reset & Base Styles ──────────────────────────
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-sans;
+  background-color: $color-bg;
+  color: $color-text;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: $color-primary-light;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+button {
+  font-family: inherit;
+}
+
+code,
+pre {
+  font-family: $font-mono;
+}
+
+// ─── Layout ──────────────────────────────────────────────
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include tablet {
+    padding: 0 $spacing-lg;
+  }
+
+  @include desktop {
+    padding: 0 $spacing-xl;
+  }
+}
+
+// ─── Scrollbar ───────────────────────────────────────────
+
+body {
+  @include scrollbar;
+}

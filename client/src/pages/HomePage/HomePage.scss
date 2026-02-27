@@ -1,0 +1,139 @@
+.home-page {
+  flex: 1;
+  padding: $spacing-lg 0;
+
+  @include tablet {
+    padding: $spacing-xl 0;
+  }
+
+  @include desktop {
+    padding: $spacing-2xl 0;
+  }
+
+  &__hero {
+    margin-bottom: $spacing-lg;
+    text-align: center;
+
+    @include tablet {
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $color-text;
+    margin-bottom: $spacing-sm;
+
+    @include tablet {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+
+    @include tablet {
+      font-size: $font-size-base;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include tablet {
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  &__filter-btn {
+    @include button-base;
+    background-color: $color-bg-secondary;
+    color: $color-text-secondary;
+    border: 1px solid $color-border;
+    font-size: $font-size-xs;
+    padding: $spacing-xs $spacing-md;
+
+    @include tablet {
+      font-size: $font-size-sm;
+      padding: $spacing-sm $spacing-lg;
+    }
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-text;
+    }
+
+    &--active {
+      background-color: $color-primary;
+      border-color: $color-primary;
+      color: white;
+
+      &:hover {
+        background-color: $color-primary-dark;
+        color: white;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      gap: $spacing-lg;
+    }
+
+    @include wide {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: $color-text-muted;
+    padding: $spacing-2xl;
+    font-size: $font-size-sm;
+  }
+
+  &__loading {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-2xl;
+    color: $color-text-muted;
+  }
+
+  &__spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: home-spin 0.6s linear infinite;
+  }
+
+  &__error {
+    @include flex-center;
+    padding: $spacing-2xl;
+    color: $color-error;
+    font-size: $font-size-base;
+  }
+}
+
+@keyframes home-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

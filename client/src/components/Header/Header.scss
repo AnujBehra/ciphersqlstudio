@@ -1,0 +1,98 @@
+.header {
+  background-color: $color-bg-secondary;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-sm $spacing-md;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  @include tablet {
+    padding: $spacing-md $spacing-lg;
+  }
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    @include flex-between;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    text-decoration: none;
+    color: $color-text;
+
+    &:hover {
+      color: $color-primary-light;
+    }
+  }
+
+  &__logo-icon {
+    font-family: $font-mono;
+    font-size: $font-size-xl;
+    color: $color-primary;
+    font-weight: 700;
+  }
+
+  &__logo-text {
+    font-size: $font-size-base;
+    font-weight: 700;
+    display: none;
+
+    @include tablet {
+      display: inline;
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__user-name {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    display: none;
+
+    @include tablet {
+      display: inline;
+    }
+  }
+
+  &__auth {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__btn {
+    @include button-base;
+    font-size: $font-size-xs;
+    padding: $spacing-xs $spacing-sm;
+
+    @include tablet {
+      font-size: $font-size-sm;
+      padding: $spacing-sm $spacing-md;
+    }
+
+    &--login {
+      @include button-secondary;
+    }
+
+    &--signup {
+      @include button-primary;
+    }
+
+    &--logout {
+      @include button-secondary;
+    }
+  }
+}

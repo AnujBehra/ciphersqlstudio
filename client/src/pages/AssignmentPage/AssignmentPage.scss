@@ -1,0 +1,264 @@
+.assignment-page {
+  flex: 1;
+  padding: $spacing-md 0;
+
+  @include tablet {
+    padding: $spacing-lg 0;
+  }
+
+  @include desktop {
+    padding: $spacing-xl 0;
+  }
+
+  // ─── Breadcrumb ──────────────────────────────────────
+
+  &__breadcrumb {
+    margin-bottom: $spacing-md;
+  }
+
+  &__back-link {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-primary-light;
+    }
+  }
+
+  // ─── Header ──────────────────────────────────────────
+
+  &__header {
+    margin-bottom: $spacing-md;
+
+    @include tablet {
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  &__header-info {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: 700;
+
+    @include tablet {
+      font-size: $font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &--easy {
+      background-color: rgba($color-easy, 0.15);
+      color: $color-easy;
+    }
+
+    &--medium {
+      background-color: rgba($color-medium, 0.15);
+      color: $color-medium;
+    }
+
+    &--hard {
+      background-color: rgba($color-hard, 0.15);
+      color: $color-hard;
+    }
+  }
+
+  // ─── Mobile Tabs ─────────────────────────────────────
+
+  &__tabs {
+    display: flex;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: $spacing-xs;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  &__tab {
+    @include button-base;
+    background: none;
+    color: $color-text-muted;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-xs;
+
+    @include tablet {
+      font-size: $font-size-sm;
+    }
+
+    &--active {
+      color: $color-primary-light;
+      border-bottom-color: $color-primary;
+    }
+  }
+
+  // ─── Layout ──────────────────────────────────────────
+
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    @include desktop {
+      flex-direction: row;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__left {
+    display: none;
+
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+      width: 40%;
+      min-width: 0;
+    }
+
+    &--visible {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+
+      @include desktop {
+        display: flex;
+      }
+    }
+  }
+
+  &__right {
+    display: none;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    @include desktop {
+      display: flex;
+      width: 60%;
+      min-width: 0;
+    }
+
+    &--visible {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+
+      @include desktop {
+        display: flex;
+      }
+    }
+  }
+
+  // ─── Panels ──────────────────────────────────────────
+
+  &__question-panel,
+  &__data-panel {
+    display: none;
+
+    @include desktop {
+      display: block;
+    }
+  }
+
+  &__panel--visible {
+    display: block;
+  }
+
+  &__question-panel {
+    @include card;
+    padding: $spacing-md;
+
+    @include tablet {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__section-title {
+    font-size: $font-size-base;
+    font-weight: 600;
+    margin-bottom: $spacing-md;
+
+    @include tablet {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__question-text {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.7;
+    margin-bottom: $spacing-lg;
+
+    @include tablet {
+      font-size: $font-size-base;
+    }
+  }
+
+  &__data-panel {
+    @include card;
+    padding: $spacing-md;
+
+    @include tablet {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__hint-wrapper {
+    padding-top: $spacing-md;
+    border-top: 1px solid $color-border;
+  }
+
+  // ─── Loading / Error ─────────────────────────────────
+
+  &__loading {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-2xl;
+    color: $color-text-muted;
+  }
+
+  &__spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid $color-border;
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: assignment-spin 0.6s linear infinite;
+  }
+
+  &__error {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-2xl;
+    color: $color-error;
+  }
+}
+
+@keyframes assignment-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

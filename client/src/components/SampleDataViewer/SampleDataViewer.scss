@@ -1,0 +1,107 @@
+.sample-data {
+  @include scrollbar;
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: 600;
+    margin-bottom: $spacing-md;
+    color: $color-text;
+
+    @include tablet {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__empty {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    padding: $spacing-lg;
+    text-align: center;
+  }
+
+  &__table-wrapper {
+    margin-bottom: $spacing-lg;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__table-name {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-primary-light;
+    margin-bottom: $spacing-sm;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__table-icon {
+    font-size: $font-size-base;
+  }
+
+  &__scroll {
+    overflow-x: auto;
+    @include scrollbar;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-xs;
+
+    @include tablet {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__th {
+    background-color: $color-bg-elevated;
+    padding: $spacing-xs $spacing-sm;
+    text-align: left;
+    border: 1px solid $color-border;
+    white-space: nowrap;
+
+    @include tablet {
+      padding: $spacing-sm $spacing-md;
+    }
+  }
+
+  &__col-name {
+    display: block;
+    font-weight: 600;
+    color: $color-text;
+  }
+
+  &__col-type {
+    display: block;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    font-weight: 400;
+    font-family: $font-mono;
+  }
+
+  &__tr {
+    &:nth-child(even) {
+      background-color: rgba($color-bg-elevated, 0.3);
+    }
+
+    &:hover {
+      background-color: rgba($color-primary, 0.05);
+    }
+  }
+
+  &__td {
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid $color-border;
+    color: $color-text-secondary;
+    white-space: nowrap;
+    font-family: $font-mono;
+    font-size: $font-size-xs;
+
+    @include tablet {
+      padding: $spacing-sm $spacing-md;
+    }
+  }
+}

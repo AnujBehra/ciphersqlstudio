@@ -1,0 +1,84 @@
+.assignment-card {
+  @include card;
+  display: block;
+  padding: $spacing-md;
+  text-decoration: none;
+  color: $color-text;
+  transition: all $transition-base;
+
+  @include tablet {
+    padding: $spacing-lg;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+    color: $color-text;
+  }
+
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-sm;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $color-text;
+
+    @include tablet {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--easy {
+      background-color: rgba($color-easy, 0.15);
+      color: $color-easy;
+    }
+
+    &--medium {
+      background-color: rgba($color-medium, 0.15);
+      color: $color-medium;
+    }
+
+    &--hard {
+      background-color: rgba($color-hard, 0.15);
+      color: $color-hard;
+    }
+  }
+
+  &__question {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-md;
+    line-height: 1.5;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cta {
+    font-size: $font-size-sm;
+    color: $color-primary-light;
+    font-weight: 500;
+    transition: color $transition-fast;
+  }
+
+  &:hover &__cta {
+    color: $color-primary;
+  }
+}
