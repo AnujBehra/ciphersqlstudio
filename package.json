@@ -13,6 +13,6 @@
     "dev:client": "cd client && npx vite --host"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }
