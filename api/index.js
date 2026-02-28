@@ -45,8 +45,16 @@ app.use('/api/auth', authRoutes);
 let isConnected = false;
 const connectDB = async () => {
   if (isConnected) return;
-  await connectMongoDB();
-  await connectPostgres();
+  try {
+    await connectMongoDB();
+  } catch (e) {
+    console.error('MongoDB connection failed:', e.message);
+  }
+  try {
+    await connectPostgres();
+  } catch (e) {
+    console.error('PostgreSQL connection failed:', e.message);
+  }
   isConnected = true;
 };
 

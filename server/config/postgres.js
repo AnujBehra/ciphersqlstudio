@@ -6,9 +6,10 @@ const pool = new Pool({
   user: process.env.PG_USER || 'postgres',
   password: process.env.PG_PASSWORD || '',
   database: process.env.PG_DATABASE || 'ciphersqlstudio',
-  max: 20,
+  max: 5,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionTimeoutMillis: 5000,
+  ssl: process.env.PG_SSL === 'true' ? { rejectUnauthorized: false } : false,
 });
 
 pool.on('error', (err) => {
@@ -22,7 +23,10 @@ const connectPostgres = async () => {
     client.release();
   } catch (error) {
     console.error('PostgreSQL connection error:', error.message);
-    process.exit(1);
+    if (typeof process.env.VERCEL === 'undefined') {
+      process.exit(1);
+    }
+    // Don't throw - PG is optional for assignment listing
   }
 };
 

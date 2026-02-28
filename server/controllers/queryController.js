@@ -1,6 +1,23 @@
 const { executeQuery } = require('../services/queryService');
+const { executeQueryFallback } = require('../services/queryServiceFallback');
 const Assignment = require('../models/Assignment');
 const UserProgress = require('../models/UserProgress');
+const mongoose = require('mongoose');
+const path = require('path');
+
+// Fallback assignments from JSON
+let fallbackAssignments = null;
+const getFallbackAssignment = (id) => {
+  if (!fallbackAssignments) {
+    try {
+      const data = require(path.join(__dirname, '../../CipherSqlStudio-assignment.json'));
+      fallbackAssignments = data.map((a, i) => ({ _id: `fallback_${i}`, ...a }));
+    } catch (e) {
+      fallbackAssignments = [];
+    }
+  }
+  return fallbackAssignments.find(a => a._id === id);
+};
 
 /**
  * POST /api/query/execute
@@ -18,13 +35,30 @@ const runQuery = async (req, res) => {
     }
 
     // Verify assignment exists
-    const assignment = await Assignment.findById(assignmentId);
+    let assignment;
+    if (mongoose.connection.readyState === 1) {
+      assignment = await Assignment.findById(assignmentId);
+    }
+    if (!assignment) {
+      // Try fallback
+      assignment = getFallbackAssignment(assignmentId);
+    }
     if (!assignment) {
       return res.status(404).json({ success: false, error: 'Assignment not found.' });
     }
 
-    // Execute the query
-    const result = await executeQuery(assignmentId, sqlQuery);
+    // Execute the query — use PostgreSQL if available, otherwise SQLite fallback
+    let result;
+    try {
+      const { pool } = require('../config/postgres');
+      const client = await pool.connect();
+      client.release();
+      // PostgreSQL is available
+      result = await executeQuery(assignmentId, sqlQuery);
+    } catch (pgError) {
+      // PostgreSQL not available — use SQLite fallback
+      result = await executeQueryFallback(assignment, sqlQuery);
+    }
 
     // Save progress (optional feature)
     try {
